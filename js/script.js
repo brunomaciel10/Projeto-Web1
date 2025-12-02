@@ -1,4 +1,4 @@
-// Validação Simples do Formulário de Reserva
+// Validação do Formulário de Reserva
 function validarFormulario() {
     const form = document.querySelector('.reserveForm');
     
@@ -11,14 +11,13 @@ function validarFormulario() {
         const email = emailInput.value.trim();
         const dataEntrada = dataEntradaInput.value.trim();
         
-        // Verifica se algum campo essencial está vazio
         if (nome === '' || email === '' || dataEntrada === '') {
-            event.preventDefault(); // Impede o envio do formulário
+            event.preventDefault(); 
             alert('Por favor, preencha seu Nome Completo, E-mail e Data de Entrada para prosseguir com a reserva.');
         } else {
             event.preventDefault(); 
             alert(`Reserva de ${nome} enviada com sucesso! Entraremos em contato no e-mail ${email}.`);
-            form.reset(); // Limpa o formulário após o "envio"
+            form.reset(); 
         }
     });
 }
@@ -32,12 +31,10 @@ function phoneMask() {
     inputTel.addEventListener('input', (e) => {
         let value = e.target.value.replace(/\D/g, '');
         
-        // Limita o número de dígitos a 11 (DDD + 9 dígitos)
         if (value.length > 11) {
             value = value.substring(0, 11);
         }
 
-        // Aplica a máscara (XX) XXXXX-XXXX
         value = value.replace(/^(\d{2})(\d)/g, '($1) $2');
         value = value.replace(/(\d{5})(\d)/, '$1-$2');
 
@@ -64,13 +61,11 @@ function cookieConsent() {
     const banner = document.getElementById('cookie-banner');
     const button = document.getElementById('aceitar-cookies');
 
-    // Verifica se o usuário já aceitou (usando localStorage)
     if (localStorage.getItem('cookieAccepted') === 'true') {
         if(banner) banner.style.display = 'none';
         return;
     }
     
-    // Se não aceitou, exibe o banner
     if (banner) banner.style.display = 'flex';
 
     if (button) {
@@ -82,7 +77,7 @@ function cookieConsent() {
 }
 cookieConsent();
 
-// Rolagem Suave (Smooth Scroll)
+// Rolagem Suave
 function smoothScroll() {
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
